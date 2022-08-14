@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
+/*   ft_recursive_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 15:45:35 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 18:28:51 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/14 08:57:27 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/14 10:02:53 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+int	ft_recursive_power(int nb, int power)
 {
-	write(1, &c, 1);
-}
+	int	result;
 
-int	ft_char_is_printable(char c)
-{
-	if (c >= 32 && c <= 126)
+	result = nb;
+	if (power > 1)
+		return (nb * ft_recursive_power(nb, (power - 1)));
+	if (power == 0)
 		return (1);
-	else
+	if (power < 0)
 		return (0);
-}
-
-void	ft_putstr_non_printable(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (ft_char_is_printable(str[i]) == 1)
-			ft_putchar(str[i]);
-		else
-		{
-			ft_putchar('\\');
-			ft_putchar("0123456789abcdef"[str[i] / 16]);
-			ft_putchar("0123456789abcdef"[str[i] % 16]);
-		}
-		i++;
-	}
+	return (result);
 }

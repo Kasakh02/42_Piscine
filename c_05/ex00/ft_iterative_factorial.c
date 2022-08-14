@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 09:18:35 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 18:22:35 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/14 08:30:42 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/14 08:38:00 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_str_is_numeric(char *str)
+int	ft_iterative_factorial(int nb)
 {
-	int	i;
+	unsigned int	result;
 
-	i = 0;
-	while (str[i] != '\0')
+	result = nb;
+	if (nb < 0)
+		return (0);
+	nb--;
+	while (nb > 0)
 	{
-		if (!(str[i] >= 48 && str [i] <= 57))
-		{
-			return (0);
-		}
-		i++;
+		result *= nb;
+		nb--;
 	}
-	return (1);
+	return (result);
 }

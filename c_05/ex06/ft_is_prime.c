@@ -1,45 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 15:45:35 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 18:28:51 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/14 11:08:12 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/14 12:00:24 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_char_is_printable(char c)
-{
-	if (c >= 32 && c <= 126)
-		return (1);
-	else
-		return (0);
-}
-
-void	ft_putstr_non_printable(char *str)
+int	ft_is_prime(int nb)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (str[i] != '\0')
+	if (nb == 0 || nb == 1)
+		return (0);
+	else
 	{
-		if (ft_char_is_printable(str[i]) == 1)
-			ft_putchar(str[i]);
-		else
+		i = nb;
+		j = 0;
+		while (i > 0)
 		{
-			ft_putchar('\\');
-			ft_putchar("0123456789abcdef"[str[i] / 16]);
-			ft_putchar("0123456789abcdef"[str[i] % 16]);
+			if (nb % i == 0)
+				j++;
+			i--;
 		}
-		i++;
+		if (j == 2)
+			return (1);
+		else
+			return (0);
 	}
+	return (0);
 }

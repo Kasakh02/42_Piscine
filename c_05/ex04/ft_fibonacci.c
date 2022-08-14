@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 09:18:35 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 18:22:35 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/14 10:03:14 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/14 10:52:30 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_str_is_numeric(char *str)
+int	ft_bibonacci(int index)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (!(str[i] >= 48 && str [i] <= 57))
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
+	if (index < 0)
+		return (-1);
+	if (index < 2)
+		return (index);
+	return (ft_fibonacci(index - 2) + ft_fibonacci(index - 1));
 }

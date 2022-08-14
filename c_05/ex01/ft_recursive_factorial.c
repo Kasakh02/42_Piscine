@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 09:18:35 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 18:22:35 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/14 08:38:36 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/14 09:17:17 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_str_is_numeric(char *str)
+int	ft_recursive_factorial(int nb)
 {
-	int	i;
+	int	result;
 
-	i = 0;
-	while (str[i] != '\0')
+	result = 1;
+	if (nb < 0)
+		return (0);
+	if (nb > 0)
 	{
-		if (!(str[i] >= 48 && str [i] <= 57))
-		{
-			return (0);
-		}
-		i++;
+		return (nb * ft_recursive_factorial(nb - 1));
 	}
-	return (1);
+	return (result);
 }

@@ -6,29 +6,37 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:52:06 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/09 18:02:10 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:28:06 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+int	ft_strlen(char *str)
 {
 	int	i;
-	unsigned int	size;
 
 	i = 0;
-	size = 0;
-	while (src[size])
-		size++;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+{
+	unsigned int	i;
+	unsigned int	x;
+
+	x = ft_strlen(src);
+	i = 0;
 	if (size != 0)
 	{
-		while (src[i] && i < (size - 1))
+		while (src [i] != '\0' && i < size - 1)
 		{
 			dest[i] = src[i];
 			i++;
 		}
 		dest[i] = '\0';
 	}
-	return (size);
+	return (x);
 }

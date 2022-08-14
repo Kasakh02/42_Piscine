@@ -6,21 +6,23 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:07:30 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/10 12:12:35 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:26:14 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*ft_lowcase(char *str)
+char	*ft_strlowcase(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
-		if (str[i] >= 65 && str[i] <= 90)
+		if (str[i] >= 'A' && str[i] <= 'Z')
+		{
 			str[i] += 32;
+		}
 		i++;
 	}
 	return (str);

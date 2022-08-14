@@ -6,25 +6,24 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 11:19:32 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/10 08:33:48 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/14 18:24:20 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_str_upperrcase(char *str)
+int	ft_str_is_uppercase(char *str)
 {
 	int	i;
 
-	if (str[0] == '\0')
-		return (1);
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
-		if ((str[i] >= 65) && (str[i] <= 90))
-			i++;
-		else
+		if (!(str[i] >= 'A' && str[i] <= 'Z'))
+		{
 			return (0);
+		}
+		i++;
 	}
 	return (1);
 }
