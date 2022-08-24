@@ -5,17 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 07:25:17 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/16 17:12:58 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/21 19:44:59 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/23 08:01:41 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	put_char(char c)
-{
-	write(1, &c, 1);
-}
+#include "../includes/ft.h"
 
 void	ft_putstr(char *str)
 {
@@ -24,7 +19,7 @@ void	ft_putstr(char *str)
 	i = 0;
 	while (str[i])
 	{
-		put_char(str[i]);
+		write(1, &str[i], 1);
 		i++;
 	}
 }

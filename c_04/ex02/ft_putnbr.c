@@ -6,49 +6,68 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 07:28:21 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 08:06:00 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/16 17:32:54 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 void	put_char(char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 }
 
-void	exceptions(int *nbr)
+void	exceptions(int *nb)
 {
-	if (*nbr == -2147483648)
+	if (*nb < 0)
 	{
 		put_char('-');
-		put_char ('2');
-		*nbr = 14783648;
-	}
-	if (*nbr < 0)
+		*nb *= -1;
+	}	
+	if (*nb == -2147483648)
 	{
-		*nbr *= (-1);
-		put_char('-');
+		put_char('2');
+		*nb = 147483648;
 	}
 }
 
-void	ft_putnbr(int nbr)
+void	ft_putnbr(int nb)
 {
-	int	number;
-	int	i;
+	int	size;
+	int	test;
 
-	exceptions(&nbr);
-	number = nbr / 10;
-	i = 1;
-	while (number > 0)
+	size = 1;
+	exceptions(&nb);
+	test = nb / 10;
+	while (test > 0)
 	{
-		i *= 10;
-		number /= 10;
+		test = test / 10;
+		size *= 10;
 	}
-	while (i > 0)
+	test = nb;
+	while (size)
 	{
-		put_char((char)(nbr / i) + '0');
-		nbr %= i;
-		i /= 10;
+		put_char((char)((test / size)) + '0');
+		test %= size;
+		size /= 10;
 	}
 }
+
+/*int	main()
+{
+	write(1, "-1: ", 4);
+	ft_putnbr(-1);
+	write(1, "\n1: ", 4);
+	ft_putnbr(1);
+	write(1, "\n-10: ", 6);
+	ft_putnbr(-10);
+	write(1, "\n10: ", 5);
+	ft_putnbr(10);
+	write(1, "\nINT_MAX: ", 10);
+	ft_putnbr(2147483647);
+	write(1, "\nINT_MIN: ", 10);
+	ft_putnbr(-2147483648);
+	write(1, "\n", 1);
+	return (0);
+}*/

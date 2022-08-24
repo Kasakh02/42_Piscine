@@ -1,50 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 08:06:24 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/20 17:44:52 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/14 19:54:06 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/23 12:32:04 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-int	whitespaces(char *str, int	*ptr_i)
+int	ft_ultimate_range(int **range, int min, int max)
 {
+	int	size;
+	int	*res;
 	int	i;
 
+	size = max - min;
 	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	*range = malloc(size * sizeof(int));
+	res = *range;
+	if (size == 0 || size < 0)
 	{
-		i++;
+		*range = 0;
+		return (0);
 	}
-	while (str[i] && (str[i] == 43 || str[i] == 45))
+	if (*range == NULL)
+		return (-1);
+	while (min < max)
 	{
-		if (str[i] == 45)
-			i *= -1;
+		res[i] = min;
 		i++;
+		min++;
 	}
-	*ptr_i = i;
-	return (i);
+	return (size);
 }
 
-int	ft_atoi(char *str)
+int	main(void)
 {
-	int	sign;
-	int	result;
+	int	*p;
+	int	x;
 	int	i;
 
-	result = 0;
-	sign = whitespaces(str, &i);
-	while (str[i] && str[i] >= 48 && str[i] <= 57)
+	x = ft_ultimate_range(&p, -4, -1);
+	i = 0;
+	while (i < 3)
 	{
-		result *= 10;
-		result += str[i] - 48;
+		printf("%d\n", p[i]);
 		i++;
 	}
-	result *= sign;
-	return (result);
+	printf("%i", x);
 }

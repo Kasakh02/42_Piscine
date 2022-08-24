@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   no_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 07:25:17 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/16 17:12:58 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/23 08:01:12 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/23 08:01:14 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 
-void	put_char(char c)
+#include "../includes/ft.h"
+
+void	no_args(char **argv)
 {
-	write(1, &c, 1);
-}
+	char	buf;
 
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
+	while (read(0, &buf, 1) != 0)
 	{
-		put_char(str[i]);
-		i++;
+		if (errno == 0)
+			ft_putchar(buf, 1);
+		else
+		{
+			ft_putstr(basename(argv[0]), 2);
+			ft_putstr(": stdin: ", 2);
+			ft_putstr(strerror(errno), 2);
+			ft_putchar('\n', 2);
+			return ;
+		}
 	}
 }

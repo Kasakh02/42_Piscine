@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 07:25:17 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/16 17:12:58 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/21 20:18:00 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/23 10:41:35 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	put_char(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
-	{
-		put_char(str[i]);
+	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
-	}
+	return (s1[i] - s2[i]);
 }

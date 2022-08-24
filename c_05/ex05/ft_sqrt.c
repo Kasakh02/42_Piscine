@@ -6,26 +6,24 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 10:53:02 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 11:07:51 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/20 16:46:35 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_sqrt(int nb)
 {
-	int	index;
+	int	n;
 
-	if (nb <= 0)
-		return (0);
-	if (nb == 1)
-		return (1);
-	index = 2;
-	if (nb >= 2)
+	n = 1;
+	if (nb > 0)
 	{
-		while (index * index <= nb)
+		while (n * n <= nb)
 		{
-			if (index * index == nb)
-				return (index);
-			index++;
+			if (n * n == nb)
+				return (n);
+			else if (n >= 46341)
+				return (0);
+			n++;
 		}
 	}
 	return (0);

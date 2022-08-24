@@ -6,77 +6,76 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:07:46 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/14 15:13:05 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/21 13:31:12 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-void	put_char(char c)
+void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 }
 
-void	put_str(char *str)
+void	ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
-	{
-		put_char(str[i]);
-		i++;
-	}
+	while (str[i] != '\0')
+		ft_putchar(str[i++]);
 }
 
-int	str_cmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] && s2[i])
+	while (s1[i] != '\0' || s2[i] != '\0')
 	{
 		if (s1[i] == s2[i])
 			i++;
-		else
-			return (s1[i] - s2[i]);	
+		if (s1[i] < s2[i] || s1[i] > s2[i])
+			return (s1[i] - s2[i]);
 	}
 	return (0);
 }
 
-void	str_swap(char **s1, char **s2)
+void	ft_swap(char **a, char **b)
 {
-	char	*temp;
+	char	*tmp;
 
-	temp = *s1;
-	*s1 = *s2;
-	*s2 = temp;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	j;
+	int		j;
+	int		x;
 
-	j = 1;
-	while (j < argc - 1)
+	x = 1;
+	while (x < argc - 1)
 	{
-		i = 1;
-		while (i < argc - 1)
+		j = 1;
+		while (j < argc - 1)
 		{
-			if (str_cmp(argv[i], argv[i + 1]) > 0)
-				str_swap(&argv[i], &argv[i + 1]);
-			i++;
+			if (ft_strcmp(argv[j], argv[j + 1]) > 0)
+			{
+				ft_swap(&argv[j], &argv[j + 1]);
+			}
+			j++;
 		}
-		j++;
+		x++;
 	}
-	i = 1;
-	while (i < argc)
+	j = 1;
+	while (j < argc)
 	{
-		put_str(argv[i]);
-		put_char('\n');
-		i++;
+		ft_putstr(argv[j]);
+		ft_putchar('\n');
+		j++;
 	}
 	return (0);
 }

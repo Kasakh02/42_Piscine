@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 07:25:17 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/16 17:12:58 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/23 08:00:44 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/23 08:01:26 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "../includes/ft.h"
 
-void	put_char(char c)
+int		main(int argc, char **argv)
 {
-	write(1, &c, 1);
-}
+	int		i;
 
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (argc == 1)
+		no_args(argv);
+	else
 	{
-		put_char(str[i]);
-		i++;
+		i = 0;
+		while (++i < argc)
+			if (ft_file_read(argv[i]) == 0)
+			{
+				ft_putstr(basename(argv[0]), 2);
+				ft_putstr(": ", 2);
+				ft_putstr(argv[i], 2);
+				ft_putstr(": ", 2);
+				ft_putstr(strerror(errno), 2);
+				ft_putchar('\n', 2);
+			}
 	}
 }

@@ -1,41 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcorrea- <hcorrea-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 11:15:21 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/08/20 16:48:45 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/08/22 17:38:05 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/08/22 17:38:28 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-int	ft_is_prime(int nb)
+int	ft_display(char *file)
 {
-	int	n;
+	int		r;
+	int		f;
+	char	a;
 
-	n = 2;
-	if (nb < 2)
+	f = open(file, 0);
+	if (f == -1)
 		return (0);
-	while (n <= nb / 2)
+	while ((r = read(f, &a, 1)))
 	{
-		if (nb % n == 0)
+		if (r == -1)
 			return (0);
-		n++;
+		write(1, &a, 1);
 	}
+	close(f);
 	return (1);
 }
 
-int	ft_find_next_prime(int nb)
+int	main(int argc, char **argv)
 {
-	while (nb < 2147483647 && !ft_is_prime(nb))
-		nb++;
-	return (nb);
+	if (argc == 1)
+		write(2, "File name missing.\n", 19);
+	else if (argc > 2)
+		write(2, "Too many arguments.\n", 20);
+	else
+	{
+		if (!ft_display(argv[1]))
+			write(2, "Cannot read file.\n", 16);
+	}
+	return (0);
 }
-
-/*int	main(void)
-{
-	printf("%i", ft_find_next_prime(2147483645));
-}*/
